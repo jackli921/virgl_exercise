@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import SaveButton from "./components/SaveButton";
+import ShowButton from "./components/ShowButton";
 
 export default function Home() {
   return (
@@ -10,7 +12,11 @@ export default function Home() {
 
       <div className={styles.bottomContainer}>bottom</div>
 
-      <div className={styles.buttonContainer}>Buttons</div>
+      <div className={styles.buttonContainer}>
+        <ShowButton />
+        <SaveButton />
+
+      </div>
     </main>
   );
 }

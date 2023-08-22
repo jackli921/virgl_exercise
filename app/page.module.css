@@ -44,8 +44,10 @@
 
 .buttonContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1em;
   height: 20%;
   /* 20% of main's height */
   border: 2px solid orange;
