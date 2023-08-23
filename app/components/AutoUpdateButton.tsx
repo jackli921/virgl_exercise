@@ -2,14 +2,19 @@
 "use client";
 import { useState } from "react";
 
-export default function AutoUpdateButton() {
-  const [isAutoUpdate, setIsAutoUpdate] = useState(true);
-
+export default function AutoUpdateButton({
+  isAutoUpdateOn,
+  setIsAutoUpdateOn
+}: {
+  isAutoUpdateOn: boolean;
+  setIsAutoUpdateOn: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div>
-      <button onClick={() => setIsAutoUpdate(!isAutoUpdate)}>
-        {isAutoUpdate ? "True" : "False"}
+      <button onClick={() => setIsAutoUpdateOn(!isAutoUpdateOn)}>
+        {isAutoUpdateOn ? "True" : "False"}
       </button>
     </div>
   );
 }
+
