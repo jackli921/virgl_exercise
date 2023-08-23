@@ -57,7 +57,7 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = () => {
   const cityName = "New York";
   const [data, setData] = useState<GetWeatherData | null>(null);
   const [isAutoUpdateOn, setIsAutoUpdateOn] = useState(true); // New state for auto-update
-
+  const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState< number | null>(null)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -71,6 +71,7 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = () => {
 
         const newData = await res.json();
         setData(newData)
+        setLastFetchedTimestamp(Math.floor(Date.now() / 1000));
       } catch (error) {
         // Handle error
       }
@@ -94,14 +95,11 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = () => {
   const { temperature, time } = data.current_weather;
 
   console.log(data);
-  const unixTimestamp = Math.floor(Date.now() / 1000); // Divide by 1000 to get seconds
-  console.log("Unix Timestamp:", unixTimestamp);
-  
+
   return (
     <div>
-      <p>
-        {time} {timezone}
-      </p>
+      <p>Last fetched: {lastFetchedTimestamp}</p>
+      <p>Last measured: {time} {timezone}</p>
       <h3>{cityName}</h3>
       <h2>{temperature}°C</h2>
       <span>Auto-Update:</span>
