@@ -1,5 +1,7 @@
 import React from "react";
+import Script from "next/script"
 import { Line } from "react-chartjs-2";
+import styles from "../page.module.css" 
 import {
   Chart as ChartJS,
   LineElement,
@@ -9,6 +11,7 @@ import {
   Legend,
   Tooltip,
 } from "chart.js";
+import zoomPlugin from 'chartjs-plugin-zoom'
 
 ChartJS.register(
   LineElement,
@@ -16,7 +19,8 @@ ChartJS.register(
   LinearScale,
   PointElement,
   Legend,
-  Tooltip
+  Tooltip,
+  zoomPlugin
 );
 
 import { Hourly } from "../types/apiResponses";
@@ -40,6 +44,17 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
     plugins: {
       legend: true,
       tooltip: true, // Enable tooltips
+      zoom:{
+        zoom:{
+            wheel:{
+                enable: true
+            },
+            pinch:{
+                enable: true,
+            },
+            mode:'xy',
+        }
+      }
     },
     scales: {
       y: {
@@ -75,10 +90,11 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
   };
 
   return (
-    <div style={{ width: "80%" }}>
+    <div className={styles.chartContainer}>
       <Line data={data} options={options}></Line>
     </div>
   );
 };
+
 
 export default HistoricalTempChart;
