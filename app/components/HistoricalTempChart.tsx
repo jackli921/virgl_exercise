@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Script from "next/script"
 import { Line } from "react-chartjs-2";
@@ -11,7 +12,6 @@ import {
   Legend,
   Tooltip,
 } from "chart.js";
-import zoomPlugin from 'chartjs-plugin-zoom'
 
 ChartJS.register(
   LineElement,
@@ -20,7 +20,6 @@ ChartJS.register(
   PointElement,
   Legend,
   Tooltip,
-  zoomPlugin
 );
 
 import { Hourly } from "../types/apiResponses";
@@ -38,23 +37,30 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
 
   const { time, temperature_2m } = weatherData;
 
+  // Extract data for the first 5 days
+  const timeForFirst5Days = time.slice(0, 120); // Assuming each day has 24 entries
+  const temperatureForFirst5Days = temperature_2m.slice(0, 120); // Assuming each day has 24 entries
+
   const options = {
     maintainAspectRatio: true, // Allow chart to take up full container width
     responsive: true, // Enable chart responsiveness
     plugins: {
-      legend: true,
+      legend: {
+        display: true, // Display the legend
+        position: "top", // You can adjust the position
+      },
       tooltip: true, // Enable tooltips
-      zoom:{
-        zoom:{
-            wheel:{
-                enable: true
-            },
-            pinch:{
-                enable: true,
-            },
-            mode:'xy',
-        }
-      }
+      zoom: {
+        zoom: {
+          wheel: {
+            enable: true,
+          },
+          pinch: {
+            enable: true,
+          },
+          mode: "xy",
+        },
+      },
     },
     scales: {
       y: {
@@ -64,7 +70,7 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
           display: true,
           text: "Temperature (°C)",
         },
-      }
+      },
     },
     elements: {
       line: {
@@ -76,11 +82,11 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
   };
 
   const data = {
-    labels: time,
+    labels: timeForFirst5Days,
     datasets: [
       {
         label: "5 Day Temp Forecast",
-        data: temperature_2m,
+        data: temperatureForFirst5Days,
         backgroundColor: "blue",
         borderColor: "black",
         pointBorderColor: "aqua",
