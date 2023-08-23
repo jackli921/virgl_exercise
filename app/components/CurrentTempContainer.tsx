@@ -1,112 +1,44 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { GetWeatherData } from "../types/apiResponses";
 import AutoUpdateButton from "./AutoUpdateButton";
-import { GetWeatherData } from "../types/apiResponses"; // Update the path to apiResponses
 
-interface CurrentTempContainerProps {}
+interface CurrentTempContainerProps {
+  weatherData: GetWeatherData | null;
+  isAutoUpdateOn: boolean;
+  setIsAutoUpdateOn: React.Dispatch<React.SetStateAction<boolean>>;
+  lastFetchedTimestamp: number | null;
+}
 
-// const CurrentTempContainer: React.FC<CurrentTempContainerProps> = () => {
-//   const cityName = "New York";
-//   const [data, setData] = useState<GetWeatherData | null>(null);
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       try {
-//         const res = await fetch(
-//           "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&hourly=temperature_2m"
-//         );
-
-//         if (!res.ok) {
-//           throw new Error("Failed to fetch data");
-//         }
-
-//         const newData = await res.json();
-//         setData(newData);
-//       } catch (error) {
-//         // Handle error
-//       }
-//     }
-
-//     fetchData();
-//   }, []);
-
-//   if (!data) {
-//     // Handle loading state
-//     return <p>Loading...</p>;
-//   }
-
-//   const { timezone } = data;
-//   const { temperature, time } = data.current_weather;
-
-//   return (
-//     <div>
-//       <p>
-//         {time} {timezone}
-//       </p>
-//       <h3>{cityName}</h3>
-//       <h2>{temperature}°C</h2>
-//       <span>Auto-Update:</span>
-//       <AutoUpdateButton />
-//     </div>
-//   );
-// };
-
-// ... (imports and other code)
-
-const CurrentTempContainer: React.FC<CurrentTempContainerProps> = () => {
+const CurrentTempContainer: React.FC<CurrentTempContainerProps> = ({
+  weatherData,
+  isAutoUpdateOn,
+  setIsAutoUpdateOn,
+  lastFetchedTimestamp,
+}) => {
   const cityName = "New York";
-  const [data, setData] = useState<GetWeatherData | null>(null);
-  const [isAutoUpdateOn, setIsAutoUpdateOn] = useState(true); // New state for auto-update
-  const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState< number | null>(null)
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&hourly=temperature_2m"
-        );
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch data");
-        }
-
-        const newData = await res.json();
-        setData(newData)
-        setLastFetchedTimestamp(Math.floor(Date.now() / 1000));
-      } catch (error) {
-        // Handle error
-      }
-    }
-
-    fetchData();
-
-    // Set up interval for auto-update if isAutoUpdateOn is true
-    if (isAutoUpdateOn) {
-      const interval = setInterval(fetchData, 5000); // Run every 60 seconds
-      return () => clearInterval(interval); // Clear interval on component unmount
-    }
-  }, [isAutoUpdateOn]); // Include isAutoUpdateOn in the dependency array
-
-  if (!data) {
-    // Handle loading state
+  if (!weatherData) {
     return <p>Loading...</p>;
   }
 
-  const { timezone } = data;
-  const { temperature, time } = data.current_weather;
-
-  console.log(data);
+  const { current_weather, timezone } = weatherData;
+  const { time, temperature } = current_weather;
 
   return (
     <div>
       <p>Last fetched: {lastFetchedTimestamp}</p>
-      <p>Last measured: {time} {timezone}</p>
+      <p>
+        Last measured: {time} {timezone}
+      </p>
       <h3>{cityName}</h3>
       <h2>{temperature}°C</h2>
       <span>Auto-Update:</span>
-      <AutoUpdateButton isAutoUpdateOn={isAutoUpdateOn} setIsAutoUpdateOn={setIsAutoUpdateOn} />
+      <AutoUpdateButton
+        isAutoUpdateOn={isAutoUpdateOn}
+        setIsAutoUpdateOn={setIsAutoUpdateOn}
+      />
     </div>
   );
 };
 
 export default CurrentTempContainer;
-
