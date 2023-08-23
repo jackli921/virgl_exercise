@@ -6,6 +6,7 @@ import ShowButton from "./components/ShowButton";
 import CurrentTempContainer from "./components/CurrentTempContainer";
 import { GetWeatherData } from "./types/apiResponses";
 import { fetchData } from "./utils/fetchData";
+import HistoricalTempChart from "./components/HistoricalTempChart";
 
 export default function Home() {
 
@@ -25,7 +26,6 @@ export default function Home() {
         // Handle error
       }
     }
-
     fetchDataAndUpdate();
 
     if (isAutoUpdateOn) {
@@ -34,12 +34,13 @@ export default function Home() {
     }
   }, [isAutoUpdateOn]);
 
-
-
+  console.log("isAutoUpdateOn:", isAutoUpdateOn);
+  console.log("last fetched:", lastFetchedTimestamp);
+  console.log(data);
+  
   return (
     <main className={styles.main}>
       <div className={styles.topContainer}>
-        Top
         <CurrentTempContainer
           weatherData={data}
           isAutoUpdateOn={isAutoUpdateOn}
@@ -48,7 +49,11 @@ export default function Home() {
         />
       </div>
 
-      <div className={styles.midContainer}>mid</div>
+      <div className={styles.midContainer}>
+        <HistoricalTempChart 
+          weatherData={data ? data.hourly: null}
+        />
+      </div>
 
       <div className={styles.bottomContainer}>bottom</div>
 
