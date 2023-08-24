@@ -16,14 +16,13 @@ const SavedDataContainer: FC<SavedDataContainerProps> = ({
     userDataElement = userSavedData.map((obj) => (
       <div key={nanoid()}>
         {" "}
-        {/* Use nanoid() as the key */}
         <p>{obj.currentTimestamp}</p>
         <p>{obj.temperature}°C</p>
       </div>
     ));
   }
 
-  return (<>{showUserSavedData ? userDataElement : null}</>);
+  return (<>{showUserSavedData ? userDataElement : "User Saved Data is hidden"}</>);
 };
 
 export default SavedDataContainer;

@@ -12,7 +12,7 @@ export default function AutoUpdateButton({
   return (
     <div>
       <button onClick={() => setIsAutoUpdateOn(!isAutoUpdateOn)}>
-        {isAutoUpdateOn ? "True" : "False"}
+        {isAutoUpdateOn ? "ON" : "OFF"}
       </button>
     </div>
   );

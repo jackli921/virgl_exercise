@@ -93,10 +93,8 @@ const HistoricalTempChart: React.FC<HistoricalTempChartProps> = ({
     ],
   };
 
-  return (
-    <div className={styles.chartContainer}>
-      <Line data={data} options={options}></Line>
-    </div>
+  return (    
+    <Line data={data} options={options}></Line>
   );
 };
 
