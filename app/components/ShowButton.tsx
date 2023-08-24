@@ -12,11 +12,10 @@ const ShowButton: React.FC<ShowButtonProps>=({
 })=> {
 
   return (
-    <div>
       <button onClick={() => setShowUserSavedData(!showUserSavedData)}>
         Show Saved  Weather Data
       </button>
-    </div>
+
   );
 }
 export default ShowButton;

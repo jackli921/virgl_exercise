@@ -29,8 +29,6 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = ({
   const formattedDate = new Date(unixTimestamp * 1000).toLocaleString();
   console.log(formattedDate);
 
-
-
   return (
     <div>
       <p>Last fetched: {lastFetchedTimestamp}</p>

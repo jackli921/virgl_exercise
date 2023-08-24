@@ -33,10 +33,8 @@ const SaveButton: React.FC<SaveButtonDataProps> = ({
     }
   }
 
-  return (
-    <div>
+  return (    
       <button onClick={() => saveData()}>Save Current Temperature</button>
-    </div>
   );
 };
 
