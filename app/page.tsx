@@ -25,6 +25,7 @@ export default function Home() {
         const newData = await fetchData(); // Use the fetchData function
         setData(newData);
         setLastFetchedTimestamp(new Date().toLocaleString());
+
       } catch (error) {
         // Handle error
       }

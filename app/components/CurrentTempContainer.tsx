@@ -23,12 +23,19 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = ({
 
   const { current_weather, timezone } = weatherData;
   const { time, temperature } = current_weather;
+  const unixTimestamp = new Date(time).getTime() / 1000; // Convert to seconds
+
+  // Convert Unix Timestamp to Human-Readable Date and Time
+  const formattedDate = new Date(unixTimestamp * 1000).toLocaleString();
+  console.log(formattedDate);
+
+
 
   return (
     <div>
       <p>Last fetched: {lastFetchedTimestamp}</p>
       <p>
-        Last measured: {time} {timezone}
+        Last measured: {formattedDate}
       </p>
       <h3>{cityName}</h3>
       <h2>{temperature}°C</h2>
