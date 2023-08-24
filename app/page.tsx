@@ -55,7 +55,7 @@ export default function Home() {
       </div>
 
       <div className={styles.bottomContainer}>
-        <SavedDataContainer userSavedData={userSavedData} />
+        <SavedDataContainer showUserSavedData={showUserSavedData} userSavedData={userSavedData} />
       </div>
 
       <div className={styles.buttonContainer}>
