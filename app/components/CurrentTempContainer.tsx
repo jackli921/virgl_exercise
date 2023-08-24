@@ -27,8 +27,6 @@ const CurrentTempContainer: React.FC<CurrentTempContainerProps> = ({
 
   // Convert Unix Timestamp to Human-Readable Date and Time
   const formattedDate = new Date(unixTimestamp * 1000).toLocaleString();
-  console.log(formattedDate);
-
   return (
     <div>
       <p>Last fetched: {lastFetchedTimestamp}</p>
