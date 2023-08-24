@@ -10,14 +10,11 @@ import { fetchData } from "./utils/fetchData";
 import HistoricalTempChart from "./components/HistoricalTempChart";
 
 export default function Home() {
-
   const [data, setData] = useState<GetWeatherData | null>(null);
   const [isAutoUpdateOn, setIsAutoUpdateOn] = useState(true);
   const [showUserSavedData, setShowUserSavedData] = useState(false);
   const [userSavedData, setUserSavedData] = useState<WeatherDataItem[] | null>(null);
-  const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState<
-    string | null
-  >(null);
+  const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchDataAndUpdate() {
