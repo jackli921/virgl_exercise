@@ -1,6 +1,4 @@
-"use client";
 import React from "react";
-import Script from "next/script"
 import { Line } from "react-chartjs-2";
 import styles from "../page.module.css" 
 import {

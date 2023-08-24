@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import SaveButton from "./components/SaveButton";
 import ShowButton from "./components/ShowButton";
+import SavedDataContainer from "./components/SavedDataContainer";
 import CurrentTempContainer from "./components/CurrentTempContainer";
-import { GetWeatherData } from "./types/apiResponses";
+import { GetWeatherData, WeatherDataItem } from "./types/apiResponses";
 import { fetchData } from "./utils/fetchData";
 import HistoricalTempChart from "./components/HistoricalTempChart";
 
@@ -12,6 +13,8 @@ export default function Home() {
 
   const [data, setData] = useState<GetWeatherData | null>(null);
   const [isAutoUpdateOn, setIsAutoUpdateOn] = useState(true);
+  const [showUserSavedData, setShowUserSavedData] = useState(false);
+  const [userSavedData, setUserSavedData] = useState<WeatherDataItem[] | null>(null);
   const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState<
     number | null
   >(null);
@@ -33,11 +36,9 @@ export default function Home() {
       return () => clearInterval(interval);
     }
   }, [isAutoUpdateOn]);
-
-  console.log("isAutoUpdateOn:", isAutoUpdateOn);
-  console.log("last fetched:", lastFetchedTimestamp);
-  console.log(data);
   
+
+  console.log("showUserSavedData:", showUserSavedData);
   return (
     <main className={styles.main}>
       <div className={styles.topContainer}>
@@ -50,16 +51,23 @@ export default function Home() {
       </div>
 
       <div className={styles.midContainer}>
-        <HistoricalTempChart 
-          weatherData={data ? data.hourly: null}
-        />
+        <HistoricalTempChart weatherData={data ? data.hourly : null} />
       </div>
 
-      <div className={styles.bottomContainer}>bottom</div>
+      <div className={styles.bottomContainer}>
+        <SavedDataContainer userSavedData={userSavedData} />
+      </div>
 
       <div className={styles.buttonContainer}>
-        <ShowButton />
-        <SaveButton />
+        <ShowButton
+          showUserSavedData={showUserSavedData}
+          setShowUserSavedData={setShowUserSavedData}
+        />
+        <SaveButton
+          weatherData={data}
+          userSavedData={userSavedData}
+          setUserSavedData={setUserSavedData}
+        />
       </div>
     </main>
   );

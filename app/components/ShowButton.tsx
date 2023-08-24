@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
 
-export default function ShowButton() {
-  const [count, setCount] = useState(0);
+interface ShowButtonProps {
+  showUserSavedData: boolean,
+  setShowUserSavedData: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const ShowButton: React.FC<ShowButtonProps>=({
+  showUserSavedData,
+  setShowUserSavedData
+})=> {
 
   return (
     <div>
-      <button onClick={() => setCount(count + 1)}>
-        Show Saved Temperatures
+      <button onClick={() => setShowUserSavedData(!showUserSavedData)}>
+        Show Saved  Weather Data
       </button>
     </div>
   );
 }
+export default ShowButton;
