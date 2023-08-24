@@ -16,7 +16,7 @@ export default function Home() {
   const [showUserSavedData, setShowUserSavedData] = useState(false);
   const [userSavedData, setUserSavedData] = useState<WeatherDataItem[] | null>(null);
   const [lastFetchedTimestamp, setLastFetchedTimestamp] = useState<
-    number | null
+    string | null
   >(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Home() {
       try {
         const newData = await fetchData(); // Use the fetchData function
         setData(newData);
-        setLastFetchedTimestamp(Math.floor(Date.now() / 1000));
+        setLastFetchedTimestamp(new Date().toLocaleString());
       } catch (error) {
         // Handle error
       }
@@ -37,8 +37,6 @@ export default function Home() {
     }
   }, [isAutoUpdateOn]);
   
-
-  console.log("showUserSavedData:", showUserSavedData);
   return (
     <main className={styles.main}>
       <div className={styles.topContainer}>

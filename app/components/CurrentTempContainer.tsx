@@ -6,7 +6,7 @@ interface CurrentTempContainerProps {
   weatherData: GetWeatherData | null;
   isAutoUpdateOn: boolean;
   setIsAutoUpdateOn: React.Dispatch<React.SetStateAction<boolean>>;
-  lastFetchedTimestamp: number | null;
+  lastFetchedTimestamp: string | null;
 }
 
 const CurrentTempContainer: React.FC<CurrentTempContainerProps> = ({
