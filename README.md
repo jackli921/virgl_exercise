@@ -1,6 +1,6 @@
 
 <div align="center" >
-<img src="./public/demo.gif" width=450px>
+    <img src="./public/demo.gif">
 </div>
 
 ## Virgal Exercise 
@@ -43,12 +43,7 @@ To run the project locally:
     "react-dom": "18.2.0",
     "react-redux": "^8.1.2",
     "typescript": "5.1.6"
-    
-## Demo
-<div  align="center">
-<img src="./public/images/demo.png" width=100%>
-</div>
- 
+
 ## Improvements
 
 Features ideas
