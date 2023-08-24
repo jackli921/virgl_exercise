@@ -1,73 +1,58 @@
+
+<div align="center" >
+<img src="./public/demo.gif" width=450px>
+</div>
+
 ## Virgal Exercise 
-A NextJS 13 application to display outdoor tempeature and timestamp at which the tempearture was last measured, and a 5-forecast chart of tempeature values.
+A NextJS 13 application to display outdoor tempeature and timestamp at which the tempearture was last measured, and a 5-day forecast chart of tempeature values. (Location is defaulted to New York)
 
 ## Overview 
-This app is my first full-stack project. It was built to consolidate the concepts I had learned from
-my full-stack course. Topics include but are not limited to:
-This web app was made for two reasons:
-1. NodeJS (NPM)
-2. ExpressJS (Templating, RESTful APIs)
-3. MongoDB (Cloud Databases, Database Association)
-4. Mongoose (Schema Designs)
-5. Authentication (local auth, Passport)
-6. Cookies & Sessions
-7. Authorization
-8. Common Security Issues - SQL Injection, XSS, etc.
-9. Image upload & Storage (Cloudinary)
-10. Maps and Geocoding
+The application is separated into 4 parts:
+1. Top section - information about the latest current tempeature data (last fetched time, last measured time, location, temperature, auto-update state)
+2. Mid section - a line graph of tempeature values over the next 5 days  
+2. Bottom section - a section that displays the values saved by you the user
+4. Botton section - two buttons for user interaction, one to save current weather data & saved time and another to display the data
 
 ## Features
-1. A index page listing all existing campsites
-2. A clustermap showing campsite distribution in any region 
-2. Create new account, login, log out, register accounts
-3. Upload and store images in the cloud when creating new campsites
-5. Display all images in carousel for viewing    
+- Responsive line chart, buttons based on viewport size
+- Auto-update current tempeature every 5 seconds with latest fetched time displayed at top
+- buttons for user to save latest temperature reading and toggle the visibility of the saved data
 
 ## Installation
 To run the project locally: 
 
-1. Clone this project locally
-2. Create .env file in the root directoryand add all necessary variables locally (api_keys, secrets, etc)
-3. Replace all existing urls to local ones (database, port, etc) 
-4. Run `npm install`to install dependencies
-5. Run `node app.js`to start the server
+1. clone this project locally
+2. run `npm install`to install dependencies
+3. open [localhost](http://localhost:3000/)
 
 ## Dependencies
-- @mapbox/mapbox-gl-geocoder
-- @mapbox/mapbox-sdk
-- cloudinary
-- connect-flash
-- connect-mongo
-- dotenv
-- ejs
-- ejs-mate
-- express
-- express-mongo-sanitize
-- express-router
-- express-session
-- helmet
-- joi
-- mapbox-gl
-- method-override
-- mongoose
-- multer
-- multer-storage-cloudinary
-- passport
-- passport-local
-- passport-local-mongoose
-- sanitize-html
-
-## Technologies
-- Node.js, Express.js, MongoDB, JavaScript, Mapbox, Cloudinary
-
+    "@cubejs-client/core": "^0.31.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/node": "20.5.2",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "chart.js": "^4.3.3",
+    "chartjs-plugin-zoom": "^2.0.1",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.19",
+    "nanoid": "^4.0.2",
+    "next": "13.4.19",
+    "next-redux-wrapper": "^8.1.0",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.1.2",
+    "typescript": "5.1.6"
+    
 ## Demo
 <div  align="center">
 <img src="./public/images/demo.png" width=100%>
 </div>
  
 ## Improvements
+
 Features ideas
-- convert to TypeScript
-- improve responsiveness
-- standardize image display dimension 
+- Manage app state using react-context 
+- Improve UI and color choice
+- Use NextJS Server-side rendering to load displayed data
 
