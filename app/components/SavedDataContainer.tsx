@@ -23,7 +23,7 @@ const SavedDataContainer: FC<SavedDataContainerProps> = ({
     ));
   }
 
-  return <div>{showUserSavedData ? userDataElement : null}</div>;
+  return (<>{showUserSavedData ? userDataElement : null}</>);
 };
 
 export default SavedDataContainer;
