@@ -1,7 +1,5 @@
-"use client";
-
+import React, { FC } from "react";
 import { GetWeatherData, WeatherDataItem } from "../types/apiResponses";
-
 
 interface SaveButtonDataProps {
   weatherData: GetWeatherData | null;
@@ -16,17 +14,12 @@ const SaveButton: React.FC<SaveButtonDataProps> = ({
   userSavedData,
   setUserSavedData,
 }) => {
-
-  
   function saveData() {
-      
-
     if (weatherData) {
       const obj = {
-        currentTimestamp: Math.floor(Date.now() / 1000),
+        currentTimestamp: new Date().toLocaleString(), // Convert to human-readable date
         temperature: weatherData.current_weather.temperature,
       };
-
 
       if (userSavedData) {
         if (userSavedData.length < 5) {
@@ -34,13 +27,12 @@ const SaveButton: React.FC<SaveButtonDataProps> = ({
         } else {
           setUserSavedData((prevData) => [...(prevData?.slice(1) ?? []), obj]);
         }
-      }
-      else{
+      } else {
         setUserSavedData((prevData) => [...(prevData ?? []), obj]);
       }
     }
   }
-  
+
   return (
     <div>
       <button onClick={() => saveData()}>Save Current Temperature</button>

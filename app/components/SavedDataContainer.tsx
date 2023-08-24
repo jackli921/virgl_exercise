@@ -18,7 +18,7 @@ const SavedDataContainer: FC<SavedDataContainerProps> = ({
         {" "}
         {/* Use nanoid() as the key */}
         <p>{obj.currentTimestamp}</p>
-        <p>{obj.temperature}</p>
+        <p>{obj.temperature}°C</p>
       </div>
     ));
   }

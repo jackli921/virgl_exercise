@@ -31,6 +31,6 @@ export interface HourlyUnits {
 }
 
 export interface WeatherDataItem {
-  currentTimestamp: number;
+  currentTimestamp: string;
   temperature: number;
 }
